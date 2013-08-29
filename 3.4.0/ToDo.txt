@@ -1,0 +1,12 @@
+[ ] Pagina de opciones con los tamaños máximos de cada area de la minuta para su representacion
+       A partir de este tamaño máximo se hará scroll de cada panel
+       Representar la altura como porcentaje del realstate vertical en lugar de pixels absolutos
+
+[ ] Al cargar la minuta adaptar el tamaño de las celdas a lo especificado en las opciones
+[ ] Crear panel para editar el contenido de cada area de la minuta
+       Haciendo doble tap en el area de la minuta a editar saldra un panel para editar el contenido
+       El panel debe permitir volver al estado anterior o guardar los cambios
+
+[ ] Opción para ocultar las cabeceras de las zonas de la minuta (modo experto) para conservar realstate
+    He metido un <span class=".etiquetaCelda"> .... </span> para cada titulo de las celdas
+    Se pueden ocultar / mostrar todos mediante $("span.etiquetaCelda").hide() show()
