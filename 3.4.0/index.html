@@ -752,10 +752,11 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
     
     
     
-    <div id="dialogoEdicionCampo" data-role="page"><!-- dialogoEdicionCampo -->
+    <div id="dialogoEdicionCampo" data-role="page" data-campo="" data-add-back-btn="true"><!-- dialogoEdicionCampo -->
+        
         <div data-role="header"> 
-            <h1>placeHolder campo</h1> 
-            
+            <h1><span id="spanTituloEdicionCampo">placeHolder campo</span></h1> 
+            <a href="#" data-icon="check" class="ui-btn-right" data-theme="b" id="botGuardarEdicionCampo">Guardar</a>
         </div>
     
         <div class="content">
@@ -776,7 +777,7 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                 </ul>
               </header>  
             </div>
-            <form><textarea id="wysihtml5-textarea" placeholder="Enter your text ..." autofocus></textarea></form>
+            <form><textarea id="wysihtml5-textarea" placeholder="Enter your text ..." autofocus style="height: 500px;"></textarea></form>
         </div>
     
     </div><!-- /dialogoEdicionCampo -->
@@ -804,7 +805,7 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                 <tr id="tablaMinuta_filaAsistentesAcciones">
                     <td width="50%" valign="top">
                                             
-                        <div id="tablaMinuta_Asistentes">
+                        <div id="tablaMinuta_Asistentes" data-campo="Asistentes">
                         <div>
                             <span class="etiquetaCelda"><strong>Asistentes</strong><br></span>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet bibendum orci vel tincidunt. Maecenas consequat gravida quam id eleifend. Nullam scelerisque sodales dapibus. Vestibulum euismod turpis ut risus feugiat vitae iaculis urna congue. Quisque vel dolor eros, ac hendrerit nibh. Duis hendrerit, elit ac hendrerit tristique, arcu elit auctor dolor, eu varius purus lorem non sapien. Sed auctor, nulla nec faucibus adipiscing, leo nunc luctus ante, at adipiscing turpis leo non dolor. Donec facilisis egestas nibh, ut elementum libero mollis nec. Proin et orci id nunc placerat dignissim et quis magna. Nunc tincidunt lectus vel leo tempor pharetra. Praesent interdum ipsum vitae velit sagittis non blandit eros commodo. Phasellus lacus neque, ultrices at rhoncus eget, venenatis in leo. Fusce malesuada magna semper neque malesuada rutrum. Praesent lacinia, dolor sed posuere dapibus, nibh leo posuere neque, molestie laoreet nisi ante ut massa. Ut varius rhoncus facilisis. Pellentesque vel aliquam sem.
@@ -816,7 +817,7 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                     
                     <td width="50%" valign="top">
                         
-                        <div id="tablaMinuta_Acciones">
+                        <div id="tablaMinuta_Acciones" data-campo="Acciones">
                         <div>
                             <span class="etiquetaCelda"><strong>Acciones</strong><br></span>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet bibendum orci vel tincidunt. Maecenas consequat gravida quam id eleifend. Nullam scelerisque sodales dapibus. Vestibulum euismod turpis ut risus feugiat vitae iaculis urna congue. Quisque vel dolor eros, ac hendrerit nibh. Duis hendrerit, elit ac hendrerit tristique, arcu elit auctor dolor, eu varius purus lorem non sapien. Sed auctor, nulla nec faucibus adipiscing, leo nunc luctus ante, at adipiscing turpis leo non dolor. Donec facilisis egestas nibh, ut elementum libero mollis nec. Proin et orci id nunc placerat dignissim et quis magna. Nunc tincidunt lectus vel leo tempor pharetra. Praesent interdum ipsum vitae velit sagittis non blandit eros commodo. Phasellus lacus neque, ultrices at rhoncus eget, venenatis in leo. Fusce malesuada magna semper neque malesuada rutrum. Praesent lacinia, dolor sed posuere dapibus, nibh leo posuere neque, molestie laoreet nisi ante ut massa. Ut varius rhoncus facilisis. Pellentesque vel aliquam sem.
@@ -829,7 +830,7 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                 
                 <tr id="tablaMinuta_filaNotas">
                     <td colspan="2" width="100%">
-                        <div id="tablaMinuta_Notas">
+                        <div id="tablaMinuta_Notas" data-campo="Notas">
                         <div>
                             <span class="etiquetaCelda"><strong>Notas</strong><br></span>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet bibendum orci vel tincidunt. Maecenas consequat gravida quam id eleifend. Nullam scelerisque sodales dapibus. Vestibulum euismod turpis ut risus feugiat vitae iaculis urna congue. Quisque vel dolor eros, ac hendrerit nibh. Duis hendrerit, elit ac hendrerit tristique, arcu elit auctor dolor, eu varius purus lorem non sapien. Sed auctor, nulla nec faucibus adipiscing, leo nunc luctus ante, at adipiscing turpis leo non dolor. Donec facilisis egestas nibh, ut elementum libero mollis nec. Proin et orci id nunc placerat dignissim et quis magna. Nunc tincidunt lectus vel leo tempor pharetra. Praesent interdum ipsum vitae velit sagittis non blandit eros commodo. Phasellus lacus neque, ultrices at rhoncus eget, venenatis in leo. Fusce malesuada magna semper neque malesuada rutrum. Praesent lacinia, dolor sed posuere dapibus, nibh leo posuere neque, molestie laoreet nisi ante ut massa. Ut varius rhoncus facilisis. Pellentesque vel aliquam sem.
@@ -842,9 +843,9 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                 
                 <tr id="tablaMinuta_filaSW">
                     <td width="50%">
-                        <div id="tablaMinuta_S">
+                        <div id="tablaMinuta_S" data-campo="Fortalezas">
                         <div>
-                            <span class="etiquetaCelda"><strong>Strengths</strong><br></span>
+                            <span class="etiquetaCelda"><strong>Fortalezas</strong><br></span>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet bibendum orci vel tincidunt. Maecenas consequat gravida quam id eleifend. Nullam scelerisque sodales dapibus. Vestibulum euismod turpis ut risus feugiat vitae iaculis urna congue. Quisque vel dolor eros, ac hendrerit nibh. Duis hendrerit, elit ac hendrerit tristique, arcu elit auctor dolor, eu varius purus lorem non sapien. Sed auctor, nulla nec faucibus adipiscing, leo nunc luctus ante, at adipiscing turpis leo non dolor. Donec facilisis egestas nibh, ut elementum libero mollis nec. Proin et orci id nunc placerat dignissim et quis magna. Nunc tincidunt lectus vel leo tempor pharetra. Praesent interdum ipsum vitae velit sagittis non blandit eros commodo. Phasellus lacus neque, ultrices at rhoncus eget, venenatis in leo. Fusce malesuada magna semper neque malesuada rutrum. Praesent lacinia, dolor sed posuere dapibus, nibh leo posuere neque, molestie laoreet nisi ante ut massa. Ut varius rhoncus facilisis. Pellentesque vel aliquam sem.
                             In tempus faucibus nibh id tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec felis mauris, luctus sed ullamcorper in, malesuada et enim. Maecenas velit nisi, dignissim et blandit quis, pellentesque at mauris. Duis accumsan venenatis eleifend. Proin ante eros, consequat nec dignissim auctor, iaculis ut leo. Cras eu rhoncus velit. Pellentesque consectetur magna ac odio feugiat pharetra. Nulla facilisi. Curabitur laoreet ullamcorper purus, eu dictum nisl ultricies id. Mauris nec augue sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent scelerisque fringilla nibh cursus facilisis. Integer elementum tortor in augue ultricies at ornare magna adipiscing. Morbi est felis, bibendum non porttitor quis, interdum vitae nulla. Vivamus sit amet dictum nunc.
                             Nulla facilisi. Integer tincidunt nulla ut mauris semper interdum. Praesent eget est mauris, sit amet pharetra ligula. In dictum, tortor in cursus condime
@@ -852,9 +853,9 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                         </div><!-- tablaMinuta_S -->
                     </td>
                     <td width="50%">
-                        <div id="tablaMinuta_W">
+                        <div id="tablaMinuta_W" data-campo="Debilidades">
                         <div>
-                            <span class="etiquetaCelda"><strong>Weaknesses</strong><br></span>
+                            <span class="etiquetaCelda"><strong>Debilidades</strong><br></span>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet bibendum orci vel tincidunt. Maecenas consequat gravida quam id eleifend. Nullam scelerisque sodales dapibus. Vestibulum euismod turpis ut risus feugiat vitae iaculis urna congue. Quisque vel dolor eros, ac hendrerit nibh. Duis hendrerit, elit ac hendrerit tristique, arcu elit auctor dolor, eu varius purus lorem non sapien. Sed auctor, nulla nec faucibus adipiscing, leo nunc luctus ante, at adipiscing turpis leo non dolor. Donec facilisis egestas nibh, ut elementum libero mollis nec. Proin et orci id nunc placerat dignissim et quis magna. Nunc tincidunt lectus vel leo tempor pharetra. Praesent interdum ipsum vitae velit sagittis non blandit eros commodo. Phasellus lacus neque, ultrices at rhoncus eget, venenatis in leo. Fusce malesuada magna semper neque malesuada rutrum. Praesent lacinia, dolor sed posuere dapibus, nibh leo posuere neque, molestie laoreet nisi ante ut massa. Ut varius rhoncus facilisis. Pellentesque vel aliquam sem.
                             In tempus faucibus nibh id tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec felis mauris, luctus sed ullamcorper in, malesuada et enim. Maecenas velit nisi, dignissim et blandit quis, pellentesque at mauris. Duis accumsan venenatis eleifend. Proin ante eros, consequat nec dignissim auctor, iaculis ut leo. Cras eu rhoncus velit. Pellentesque consectetur magna ac odio feugiat pharetra. Nulla facilisi. Curabitur laoreet ullamcorper purus, eu dictum nisl ultricies id. Mauris nec augue sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent scelerisque fringilla nibh cursus facilisis. Integer elementum tortor in augue ultricies at ornare magna adipiscing. Morbi est felis, bibendum non porttitor quis, interdum vitae nulla. Vivamus sit amet dictum nunc.
                             Nulla facilisi. Integer tincidunt nulla ut mauris semper interdum. Praesent eget est mauris, sit amet pharetra ligula. In dictum, tortor in cursus condime
@@ -865,9 +866,9 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                 
                 <tr id="tablaMinuta_filaOT">
                     <td width="50%">
-                        <div id="tablaMinuta_O">
+                        <div id="tablaMinuta_O" data-campo="Oportunidades">
                         <div>
-                            <span class="etiquetaCelda"><strong>Opportunities</strong><br></span>
+                            <span class="etiquetaCelda"><strong>Oportunidades</strong><br></span>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet bibendum orci vel tincidunt. Maecenas consequat gravida quam id eleifend. Nullam scelerisque sodales dapibus. Vestibulum euismod turpis ut risus feugiat vitae iaculis urna congue. Quisque vel dolor eros, ac hendrerit nibh. Duis hendrerit, elit ac hendrerit tristique, arcu elit auctor dolor, eu varius purus lorem non sapien. Sed auctor, nulla nec faucibus adipiscing, leo nunc luctus ante, at adipiscing turpis leo non dolor. Donec facilisis egestas nibh, ut elementum libero mollis nec. Proin et orci id nunc placerat dignissim et quis magna. Nunc tincidunt lectus vel leo tempor pharetra. Praesent interdum ipsum vitae velit sagittis non blandit eros commodo. Phasellus lacus neque, ultrices at rhoncus eget, venenatis in leo. Fusce malesuada magna semper neque malesuada rutrum. Praesent lacinia, dolor sed posuere dapibus, nibh leo posuere neque, molestie laoreet nisi ante ut massa. Ut varius rhoncus facilisis. Pellentesque vel aliquam sem.
                             In tempus faucibus nibh id tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec felis mauris, luctus sed ullamcorper in, malesuada et enim. Maecenas velit nisi, dignissim et blandit quis, pellentesque at mauris. Duis accumsan venenatis eleifend. Proin ante eros, consequat nec dignissim auctor, iaculis ut leo. Cras eu rhoncus velit. Pellentesque consectetur magna ac odio feugiat pharetra. Nulla facilisi. Curabitur laoreet ullamcorper purus, eu dictum nisl ultricies id. Mauris nec augue sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent scelerisque fringilla nibh cursus facilisis. Integer elementum tortor in augue ultricies at ornare magna adipiscing. Morbi est felis, bibendum non porttitor quis, interdum vitae nulla. Vivamus sit amet dictum nunc.
                             Nulla facilisi. Integer tincidunt nulla ut mauris semper interdum. Praesent eget est mauris, sit amet pharetra ligula. In dictum, tortor in cursus condime
@@ -875,9 +876,9 @@ document.addEventListener("appMobi.device.ready",onDeviceReady,false);
                         </div><!-- tablaMinuta_O -->
                     </td>
                     <td width="50%">
-                        <div id="tablaMinuta_T">
+                        <div id="tablaMinuta_T" data-campo="Amenazas">
                         <div>
-                            <span class="etiquetaCelda"><strong>Threats</strong><br></span>
+                            <span class="etiquetaCelda"><strong>Amenazas</strong><br></span>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet bibendum orci vel tincidunt. Maecenas consequat gravida quam id eleifend. Nullam scelerisque sodales dapibus. Vestibulum euismod turpis ut risus feugiat vitae iaculis urna congue. Quisque vel dolor eros, ac hendrerit nibh. Duis hendrerit, elit ac hendrerit tristique, arcu elit auctor dolor, eu varius purus lorem non sapien. Sed auctor, nulla nec faucibus adipiscing, leo nunc luctus ante, at adipiscing turpis leo non dolor. Donec facilisis egestas nibh, ut elementum libero mollis nec. Proin et orci id nunc placerat dignissim et quis magna. Nunc tincidunt lectus vel leo tempor pharetra. Praesent interdum ipsum vitae velit sagittis non blandit eros commodo. Phasellus lacus neque, ultrices at rhoncus eget, venenatis in leo. Fusce malesuada magna semper neque malesuada rutrum. Praesent lacinia, dolor sed posuere dapibus, nibh leo posuere neque, molestie laoreet nisi ante ut massa. Ut varius rhoncus facilisis. Pellentesque vel aliquam sem.
                             In tempus faucibus nibh id tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec felis mauris, luctus sed ullamcorper in, malesuada et enim. Maecenas velit nisi, dignissim et blandit quis, pellentesque at mauris. Duis accumsan venenatis eleifend. Proin ante eros, consequat nec dignissim auctor, iaculis ut leo. Cras eu rhoncus velit. Pellentesque consectetur magna ac odio feugiat pharetra. Nulla facilisi. Curabitur laoreet ullamcorper purus, eu dictum nisl ultricies id. Mauris nec augue sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent scelerisque fringilla nibh cursus facilisis. Integer elementum tortor in augue ultricies at ornare magna adipiscing. Morbi est felis, bibendum non porttitor quis, interdum vitae nulla. Vivamus sit amet dictum nunc.
                             Nulla facilisi. Integer tincidunt nulla ut mauris semper interdum. Praesent eget est mauris, sit amet pharetra ligula. In dictum, tortor in cursus condime

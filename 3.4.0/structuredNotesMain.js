@@ -8,8 +8,15 @@ $(document).ready(function() {
     ///////////////////////////////
     
         $("#pageOpciones").bind("pageshow", loadSettings);
-        $("#bloqueAsistentes").dblclick(abrirDialogoEdicion);
         
+        //Abrir pagina de edicion de campo al hacer doble click en las areas correspondientes de la minuta
+        $("#tablaMinuta_Asistentes").dblclick(abrirDialogoEdicion);
+        $("#tablaMinuta_Acciones").dblclick(abrirDialogoEdicion);
+        $("#tablaMinuta_Notas").dblclick(abrirDialogoEdicion);
+        $("#tablaMinuta_S").dblclick(abrirDialogoEdicion);
+        $("#tablaMinuta_W").dblclick(abrirDialogoEdicion);
+        $("#tablaMinuta_O").dblclick(abrirDialogoEdicion);
+        $("#tablaMinuta_T").dblclick(abrirDialogoEdicion);
         
         
     
@@ -54,7 +61,15 @@ $(document).ready(function() {
         $("#tablaMinuta_T").css("height", alturaOT + "px");
         $("#tablaMinuta_T").css("max-height", alturaOT + "px");
         
-        scrollAsistentes = new iScroll('tablaMinuta_Asistentes',  {  hScrollbar: false, vScrollbar: true, zoom: true });
+        if (typeof scrollAsistentes != 'undefined') scrollAsistentes.destroy();
+        if (typeof scrollAcciones != 'undefined') scrollAcciones.destroy();
+        if (typeof scrollNotas != 'undefined') scrollNotas.destroy();
+        if (typeof scrollS != 'undefined') scrollS.destroy();
+        if (typeof scrollW != 'undefined') scrollW.destroy();
+        if (typeof scrollO != 'undefined') scrollO.destroy();
+        if (typeof scrollT != 'undefined') scrollT.destroy();
+        
+        scrollAsistentes = new iScroll('tablaMinuta_Asistentes');
         scrollAcciones = new iScroll('tablaMinuta_Acciones');
         scrollNotas = new iScroll('tablaMinuta_Notas');
         scrollS = new iScroll('tablaMinuta_S');
@@ -85,14 +100,59 @@ $(document).ready(function() {
 
 
 
-
+/* ToDo: Hacer que el text area tenga un tamaño adecuado */
 function abrirDialogoEdicion() {
     console.log("[DEBUG] Entrando en abrirDialogoEdicion fichero structuredNotesMain.js");
-    $.mobile.changePage( "#dialogoEdicionCampo", { role: "dialog" } );
+    
+    //Obtenemos el div que ha llamado a la funcion abrirDialogoEdicion y sacamos el parametro data-campo
+    var $this = $( this );
+    var campo = $this.jqmData("campo");
+    
+    //Lo asignamos al div del panel de edicion para no perderlo mas adelante
+    $("#dialogoEdicionCampo").jqmData("campo", campo);
+    
+    $.mobile.changePage( "#dialogoEdicionCampo");
+    
+    
+    console.log("[DEBUG] Editando el campo: " + campo);
+    
+    //Mostramos en el titulo del dialogo el campo correspondiente al texto en edicion
+    $("#spanTituloEdicionCampo").html(campo);
+    
+    //Mostramos en el textArea el html original del campo para editar
+    $("#wysihtml5-textarea").html($this.html());
+    
+    
+    //Configuramos el text area como un editor rico: wysihtml5
     var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
         toolbar:      "wysihtml5-toolbar", // id of toolbar element
         parserRules:  wysihtml5ParserRules // defined in parser rules set 
     });
     
+    //Asignacion Event Handlers de los botones
+    $("#botGuardarEdicionCampo").click(guardarCampoEditado);
+    
     console.log("[DEBUG] Saliendo de abrirDialogoEdicion fichero structuredNotesMain.js");
 };
+
+
+
+
+/* ToDo: Destroy wysihtml5 textarea antes de cerrar */
+function guardarCampoEditado() {
+    console.log("[DEBUG] Entrando en guardarCampoEditado fichero structuredNotesMain.js");
+    
+    var contenidoEditado = $("#wysihtml5-textarea").val();
+    var campoEditado = $("#dialogoEdicionCampo").jqmData("campo");
+    var identificadorDivEditado = "";
+    
+    if ( campoEditado == "Asistentes") identificadorDivEditado = "tablaMinuta_Asistentes";
+    if ( campoEditado == "Acciones") identificadorDivEditado = "tablaMinuta_Acciones";
+    if ( campoEditado == "Notas") identificadorDivEditado = "tablaMinuta_Notas";
+    
+    $("#"+identificadorDivEditado).html(contenidoEditado);
+    
+    $.mobile.changePage( "#pageEdicionMinutaTables");
+    
+    console.log("[DEBUG] Saliendo de guardarCampoEditado fichero structuredNotesMain.js");
+}
