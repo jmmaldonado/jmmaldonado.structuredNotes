@@ -28,6 +28,9 @@ $(document).ready(function() {
     $('#botPruebas').click(function() {
         console.log("[INFO] BOTON DE PRUEBAS");
         
+        $.mobile.changePage( "#dialogoEdicionCampoCKEditor");
+        CKEDITOR.replace( 'textareaCKEditor', { toolbar: 'Basic' } );
+        
     });
     
     
