@@ -1,3 +1,9 @@
+// COMPILAR EN MAC OS X PARA PHONEGAP
+-- Abrir la consola y navegar al directorio home del usuario "User"
+-- Ahi hay una carpeta testApp, dentro hay otra llamada www
+-- Copiar todo el codigo del Intel XDK dentro de la carpeta www
+-- Ejecutar: phonegap run ios
+
 Guardar las notas en varios ficheros, uno por cada seccion de la nota
 Guardar las notas en un unico fichero xml con formateado html en cada seccion 
     <minuta>

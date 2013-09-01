@@ -20,6 +20,8 @@ $(document).ready(function() {
         
         $("#pageEdicionMinutaTables").bind("pageshow", prepararPaginaEdicionMinuta);
         
+        $("#botCancelarEdicionMinuta").click(cancelarEdicionMinuta);
+        
         
     
     //AQUI VA EL CODIGO PRINCIPAL DE LA APLICACION
@@ -28,8 +30,7 @@ $(document).ready(function() {
     $('#botPruebas').click(function() {
         console.log("[INFO] BOTON DE PRUEBAS");
         
-        $.mobile.changePage( "#dialogoEdicionCampoCKEditor");
-        CKEDITOR.replace( 'textareaCKEditor', { toolbar: 'Basic' } );
+        prepararPaginaEdicionMinuta();
         
     });
     
@@ -58,30 +59,26 @@ function abrirDialogoEdicion() {
     var campo = $this.jqmData("campo");
     
     //Lo asignamos al div del panel de edicion para no perderlo mas adelante
-    $("#dialogoEdicionCampo").jqmData("campo", campo);
+    $("#dialogoEdicionCampoCKEditor").jqmData("campo", campo);
     
-    $.mobile.changePage( "#dialogoEdicionCampo");
+    $.mobile.changePage( "#dialogoEdicionCampoCKEditor");
     
     
     console.log("[DEBUG] Editando el campo: " + campo);
     
     //Mostramos en el titulo del dialogo el campo correspondiente al texto en edicion
-    $("#spanTituloEdicionCampo").html(campo);
+    $("#spanTituloEdicionCampoCKEditor").html(campo);
     
-    //Solo inicializamos el WYSIHTML5 una vez. Luego lo metemos como variable global (window. ...)
-    if(!window.editorWYSIHTML5) {
-        //Configuramos el text area como un editor rico: wysihtml5
-        window.editorWYSIHTML5 = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
-            toolbar:      "wysihtml5-toolbar", // id of toolbar element
-            parserRules:  wysihtml5ParserRules // defined in parser rules set 
-        });
-    }
+    //Inicializamos el CKEditor en el textarea si no ha sido inicializado antes
+    if (!CKEDITOR.instances.textareaCKEditor) 
+        CKEDITOR.replace( 'textareaCKEditor', { toolbar: 'Basic' } );
     
-    //Mostramos en el textArea el html original del campo para editar
-    window.editorWYSIHTML5.setValue($this.html());
+    //Cargamos los datos correspondientes al area de la minuta que invoco al editor
+    CKEDITOR.instances.textareaCKEditor.setData($this.html());
     
     //Asignacion Event Handlers de los botones
-    $("#botGuardarEdicionCampo").click(guardarCampoEditado);
+    $("#botGuardarEdicionCampoCKEditor").click(guardarCampoEditado);
+    $("#botCancelarEdicionCampoCKEditor").click(cancelarCampoEditado);
     
     console.log("[DEBUG] Saliendo de abrirDialogoEdicion fichero structuredNotesMain.js");
 };
@@ -89,19 +86,105 @@ function abrirDialogoEdicion() {
 
 
 
+function cancelarCampoEditado() {
+    $.mobile.changePage( "#pageEdicionMinutaTables");
+}
 
+
+
+function cancelarEdicionMinuta() {
+    $.mobile.changePage( "#pageInicial");
+}
+
+
+/*  Para guardar los datos correctamentes en la pageEdicionMinutaTables hay que tener cuidado al meter html en la celda
+    correspondiente ya que iScroll es muy sensible a los cambios del DOM.
+    1. Obtener el contenido del textarea en formato HTML de la pagina de edicion de campo
+    2. Obtener el div que invoco a la pagina de edicion de campo y su variable global del objeto iScroll asociada (window.scroll ...)
+    3. Destruir el objeto iScroll que invoco al dialogo (lo regeneraremos al mostrar la pagina de edicion de minuta)
+    4. Poner a null la variable global del objeto iScroll para que en el evento "pageshow" se re inicialice
+    5. Poner el html en el div que lo invoco */
 function guardarCampoEditado() {
     console.log("[DEBUG] Entrando en guardarCampoEditado fichero structuredNotesMain.js");
     
-    var contenidoEditado = $("#wysihtml5-textarea").val();
-    var campoEditado = $("#dialogoEdicionCampo").jqmData("campo");
+    //var contenidoEditado = $("#textareaCKEditor").val();
+    var contenidoEditado = CKEDITOR.instances.textareaCKEditor.getData();
+    var campoEditado = $("#dialogoEdicionCampoCKEditor").jqmData("campo");
     var identificadorDivEditado = "";
     
+    var iScrollCampoEditado;
+    
+    /*
     if ( campoEditado == "Asistentes") identificadorDivEditado = "tablaMinuta_Asistentes";
     if ( campoEditado == "Acciones") identificadorDivEditado = "tablaMinuta_Acciones";
     if ( campoEditado == "Notas") identificadorDivEditado = "tablaMinuta_Notas";
     
+    
+    if ( campoEditado == "Asistentes") iScrollCampoEditado = window.scrollAsistentes;
+    if ( campoEditado == "Acciones") iScrollCampoEditado = window.scrollAcciones;
+    if ( campoEditado == "Notas") iScrollCampoEditado = window.scrollNotas;
+
+    iScrollCampoEditado.destroy();
+    window.scrollAsistentes = null;
     $("#"+identificadorDivEditado).html(contenidoEditado);
+    //iScrollCampoEditado.wrapper.innerHTML = contenidoEditado;
+    */
+    
+    switch (campoEditado) {
+        case "Asistentes":
+            identificadorDivEditado = "tablaMinuta_Asistentes"
+            window.scrollAsistentes.destroy();            
+            window.scrollAsistentes = null;
+            $("#"+identificadorDivEditado).html(contenidoEditado);
+            break;
+            
+        case "Acciones":
+            identificadorDivEditado = "tablaMinuta_Acciones"
+            window.scrollAcciones.destroy();
+            window.scrollAcciones = null;
+            $("#"+identificadorDivEditado).html(contenidoEditado);
+            break;
+            
+        case "Notas":
+            identificadorDivEditado = "tablaMinuta_Notas"
+            window.scrollNotas.destroy();
+            window.scrollNotas = null;
+            $("#"+identificadorDivEditado).html(contenidoEditado);
+            break;
+            
+        case "Fortalezas":
+            identificadorDivEditado = "tablaMinuta_S"
+            window.scrollS.destroy();
+            window.scrollS = null;
+            $("#"+identificadorDivEditado).html(contenidoEditado);
+            break;
+            
+        case "Debilidades":
+            identificadorDivEditado = "tablaMinuta_W"
+            window.scrollW.destroy();
+            window.scrollW = null;
+            $("#"+identificadorDivEditado).html(contenidoEditado);
+            break;
+            
+        case "Oportunidades":
+            identificadorDivEditado = "tablaMinuta_O"
+            window.scrollO.destroy();
+            window.scrollO = null;
+            $("#"+identificadorDivEditado).html(contenidoEditado);
+            break;
+            
+        case "Amenazas":
+            identificadorDivEditado = "tablaMinuta_T"
+            window.scrollT.destroy();
+            window.scrollT = null;
+            $("#"+identificadorDivEditado).html(contenidoEditado);
+            break;
+            
+        default:
+            console.log ("[ERROR] El campo editado no corresponde con los casos del switch: fichero structuredNotesMain.js");
+    }
+    
+    
     
     $.mobile.changePage( "#pageEdicionMinutaTables");
     
@@ -111,7 +194,9 @@ function guardarCampoEditado() {
 
 
 
-
+/* Asigna las alturas correspondientes a las celdas de la tabla de edicion de la minuta
+    en funcion de lo definido en las opciones de la aplicacion.
+    Inicializa tambien los iScroll para que se pueda hacer scroll individual en cada celda */
 function prepararPaginaEdicionMinuta() {
 
     console.log("[DEBUG] Entrando en prepararPaginaEdicionMinuta fichero structuredNotesMain.js");
@@ -150,22 +235,23 @@ function prepararPaginaEdicionMinuta() {
     
     $("#tablaMinuta_T").css("height", alturaOT + "px");
     $("#tablaMinuta_T").css("max-height", alturaOT + "px");
+
     
-    if (typeof scrollAsistentes != 'undefined') scrollAsistentes.destroy();
-    if (typeof scrollAcciones != 'undefined') scrollAcciones.destroy();
-    if (typeof scrollNotas != 'undefined') scrollNotas.destroy();
-    if (typeof scrollS != 'undefined') scrollS.destroy();
-    if (typeof scrollW != 'undefined') scrollW.destroy();
-    if (typeof scrollO != 'undefined') scrollO.destroy();
-    if (typeof scrollT != 'undefined') scrollT.destroy();
+    if (!window.scrollAsistentes) window.scrollAsistentes = new iScroll('tablaMinuta_Asistentes');
+    if (!window.scrollAcciones) window.scrollAcciones = new iScroll('tablaMinuta_Acciones');
+    if (!window.scrollNotas) window.scrollNotas = new iScroll('tablaMinuta_Notas');
+    if (!window.scrollS) window.scrollS = new iScroll('tablaMinuta_S');
+    if (!window.scrollW) window.scrollW = new iScroll('tablaMinuta_W');
+    if (!window.scrollO) window.scrollO = new iScroll('tablaMinuta_O');
+    if (!window.scrollT) window.scrollT = new iScroll('tablaMinuta_T');
     
-    scrollAsistentes = new iScroll('tablaMinuta_Asistentes');
-    scrollAcciones = new iScroll('tablaMinuta_Acciones');
-    scrollNotas = new iScroll('tablaMinuta_Notas');
-    scrollS = new iScroll('tablaMinuta_S');
-    scrollW = new iScroll('tablaMinuta_W');
-    scrollO = new iScroll('tablaMinuta_O');
-    scrollT = new iScroll('tablaMinuta_T');
+    window.scrollAsistentes.refresh(); 
+    window.scrollAcciones.refresh();
+    window.scrollNotas.refresh();
+    window.scrollS.refresh();
+    window.scrollW.refresh();
+    window.scrollO.refresh();
+    window.scrollT.refresh();
     
     
     console.log("[DEBUG] Saliendo de prepararPaginaEdicionMinuta fichero structuredNotesMain.js");
