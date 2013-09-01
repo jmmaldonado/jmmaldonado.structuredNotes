@@ -65,11 +65,13 @@
         <div data-role="header" id="headerPaginaPrincipal" data-theme="b">             
             <a href="#panelMenuPrincipal" data-icon="grid" data-iconpos="left">Menu</a>
             <h1>Structured Notes</h1> 
-            <a href="#" data-icon="plus" data-iconpos="right">Nueva minuta</a>
+            <a href="#pageNuevaMinuta" data-icon="plus" data-iconpos="right" data-rel="dialog">Nueva minuta</a>
         </div><!-- /headerPaginaPrincipal -->
         
         <div class="content" data-role="content">
-            <ul data-role="listview" data-split-icon="gear" data-split-theme="d">
+            <ul data-role="listview" data-theme="c" data-dividertheme="d" id="listaMinutas">
+                <li>EOEOE</li>
+                <!--
         		<li><a href="index.html">
     				<img src="images/album-bb.jpg" />
     				<h3>Broken Bells</h3>
@@ -138,31 +140,32 @@
     				<p>Arcade Fire</p>
     				</a><a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
     			</li>
+                -->
     		</ul>
         </div>
-        
-        
-        
-        
-    	<!--
-    	<div data-role="footer" data-id="footer" data-position="fixed" class="nav-glyphish-example">
-    		<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
-    		<ul>
-    			<li><a href="#pageInicial" id="chat" data-icon="custom" data-transition="slide">Notas</a></li>
-    			<li><a href="#pageEdicionMinuta" id="email" data-icon="custom" data-transition="slide">Edicion</a></li>
-    			<li><a href="#pageEdicionMinutaTables" id="skull" data-icon="custom">Tables</a></li>
-    			<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
-    			<li><a href="#" id="coffee" data-icon="custom">Coffee</a></li>
-    		</ul>
-    		</div>
-    	</div>
-        -->
-        
-        
+                
         
     </div><!-- /pageInicial -->
     
     
+    
+    
+    
+    
+    <div id="pageNuevaMinuta" data-role="page" data-theme="c" data-close-btn="none">
+        
+        <div data-role="header" data-theme="c">
+            <a href="#pageInicial" data-role="button">Cancelar</a>
+    		<h1>Nueva minuta</h1>
+            <a href="#" id="botNuevaMinuta" data-role="button" data-theme="b">Crear Minuta</a>
+		</div>
+        
+        <div data-role="content">
+			<label for="textNombreMinuta">Nombre de la minuta:</label>
+            <input type="text" name="name" id="textNombreMinuta" value=""  />   
+		</div>
+        
+    </div>
     
     
     
@@ -174,9 +177,11 @@
         <div data-role="header"> 
             <h1>Edicion de minuta</h1> 
         </div>
+        
     
         <div class="content" data-role="content">
-        	PAGINA VACIA
+        	PAGINA VACIA<br/>
+            <a href="#" id="botPruebasPhonegap" data-role="button" data-icon="custom">Pruebas Phonegap</a>
     	</div>
         
         
@@ -263,10 +268,20 @@
     
     <div id="pageEdicionMinutaTables" data-role="page">
     
+        <!-- MENU PRINCIPAL DE LA APLICACION -->
+        <div data-role="panel" id="panelMenuEdicionMinuta" data-position="right" data-display="reveal" data-theme="b">
+            
+            <h3>Opciones de minuta</h3>
+            <br>
+            <a href="#" data-icon="back" data-role="button" data-theme="c" id="botCancelarEdicionMinuta">Descartar cambios</a>
+            
+        </div><!-- /panelMenuEdicionMinuta -->
+    
+    
         <div data-role="header" id="cabecera" data-theme="b"> 
-            <a href="#" data-icon="back" class="ui-btn-left" data-theme="b" id="botCancelarEdicionMinuta">Cancelar</a>
+            <a href="#" data-role="button" id="botGuardarMinuta" data-theme="b" data-icon="check">Guardar</a>
             <h1>Edicion de minuta - Table layout</h1> 
-            <a href="#" id="botPruebas" data-icon="gear" class="ui-btn-right" data-transition="slide">PRUEBAS</a>
+            <a href="#panelMenuEdicionMinuta" id="botOpcionesEdicionMinuta" data-icon="gear" class="ui-btn-right" data-transition="slide">Opciones</a>
         </div>
     
         <div class="content" data-role="content">
@@ -449,6 +464,9 @@
     
     
     <!-- CARGA DE LIBRERIAS -->
+    <script src="phonegap.js"></script>
+    
+    
     <script type="text/javascript" src="jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="jquery.mobile-1.3.2.min.js"></script>  
     <!--<script type="text/javascript" src="http://jscrollpane.kelvinluck.com/script/jquery.jscrollpane.min.js"></script>-->
@@ -466,6 +484,8 @@
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/utilidades.js"></script>
     <script type="text/javascript" src="structuredNotesMain.js"></script>
+    
+    <script type="text/javascript" src="js/pruebas.js"></script>
 
 </body>
 </html>
