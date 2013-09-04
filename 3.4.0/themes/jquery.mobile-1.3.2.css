@@ -766,7 +766,8 @@ a.ui-link-inherit {
 	background: 						#666 /*{global-icon-color}*/;
 	background: 						transparent /*{global-icon-disc}*/;
 	background-color: transparent;
-	background-image: url(images/icons-18-black.png) /*{global-icon-set}*/;
+    box-shadow: none !important;
+	background-image: url(images/icons-18-white.png) /*{global-icon-set}*/;
 	background-repeat: no-repeat;
 	-webkit-border-radius: 				9px;
 	border-radius: 						9px;

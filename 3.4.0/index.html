@@ -37,6 +37,10 @@
         document.addEventListener("appMobi.device.ready",onDeviceReady,false);    
     </script>
 
+    <!--
+    <link rel="stylesheet" href="font-awesome/css/bootstrap-combined.no-icons.min.css"> -->
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+   
 </head>
 <body>
 
@@ -45,13 +49,12 @@
     <div id="pageInicial" data-role="page" data-theme="c">
     
         <!-- MENU PRINCIPAL DE LA APLICACION -->
-        <div data-role="panel" id="panelMenuPrincipal" data-position="left" data-display="reveal" data-theme="b">
+        <div data-role="panel" id="panelMenuPrincipal" data-position="left" data-display="reveal" data-theme="a">
             
-            <ul data-role="listview" data-theme="c" data-dividertheme="d">
-    			<li data-role="list-divider">Minutas</li>
-    			<li><a href="#pageInicial">Lista de minutas</a></li>
-    			<li><a href="#pageEdicionMinutaTables">Editar minuta</a></li>
-    			<li><a href="#pageEdicionMinuta">OLD Editar minuta</a></li>
+            <ul data-role="listview" data-theme="a" data-dividertheme="d" class="record-list">
+    			<li data-theme="b"><a href="#">&nbsp;</a></li>
+    			<li><a href="#pageEdicionMinutaTables"><i class="icon-edit"></i>&nbsp;&nbsp;&nbsp;Editar minuta</a></li>
+    			<li><a href="#pageEdicionMinuta"><i class="icon-phone"></i>&nbsp;&nbsp;&nbsp;OLD Editar minuta</a></li>
     			<li data-role="list-divider">Structured Notes</a></li>
     			<li><a href="#pageOpciones">Opciones</a></li>
                 <li><a href="#">Ayuda</a></li>
@@ -62,7 +65,7 @@
         
         
         <!-- CABECERA DE LA PAGINA PRINCIPAL -->
-        <div data-role="header" id="headerPaginaPrincipal" data-theme="b">             
+        <div data-role="header" id="headerPaginaPrincipal" data-theme="b" class="ui-icon-nodisc">             
             <a href="#panelMenuPrincipal" data-icon="grid" data-iconpos="left">Menu</a>
             <h1>Structured Notes</h1> 
             <a href="#pageNuevaMinuta" data-icon="plus" data-iconpos="right" data-rel="dialog">Nueva minuta</a>
